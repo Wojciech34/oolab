@@ -4,6 +4,7 @@ package agh.ics.oop;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.lang.Exception;
 
 public class World {
     static void run(Directions[] t) {
@@ -94,14 +95,58 @@ public class World {
         }
 
         public Vector2d opposite() {
-            Vector2d vector = new Vector2d(this.x, -this.y);
+            Vector2d vector = new Vector2d(this.x, this.y);
             vector.x *= -1;
             vector.y *= -1;
             return vector;
         }
     }
 
-    public static void main(String[] args) {
+    public enum MoveDirection {
+        FORWARD, BACKWARD, RIGHT, LEFT;
+    }
+
+    public enum MapDirection {
+        NORTH, SOUTH, WEST, EAST;
+        public String toString() {
+            switch (this){
+                case NORTH -> {return "Północ";}
+                case SOUTH -> {return "Południe";}
+                case WEST -> {return "Zachód";}
+                case EAST -> {return "Wschód";}
+            }
+            return "Error";
+        }
+        public MapDirection next() throws Exception {
+            switch (this){
+                case NORTH -> {return EAST;}
+                case SOUTH -> {return WEST;}
+                case WEST -> {return NORTH;}
+                case EAST -> {return SOUTH;}
+            }
+            throw new Exception("Error");
+        }
+        public MapDirection previous() throws Exception {
+            switch(this){
+                case NORTH -> {return WEST;}
+                case SOUTH -> {return EAST;}
+                case WEST -> {return SOUTH;}
+                case EAST -> {return NORTH;}
+            }
+            throw new Exception("Error");
+        }
+        public Vector2d toUnitVector() throws Exception {
+            switch (this){
+                case NORTH -> {return new Vector2d(0,1);}
+                case SOUTH -> {return new Vector2d(0,-1);}
+                case WEST -> {return new Vector2d(-1,0);}
+                case EAST -> {return new Vector2d(1,0);}
+            }
+            throw new Exception("Error");
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
         int m = 0, j = 0;
         for (int i = 0; i < args.length; i++) {
             if (Objects.equals(args[i], "l") || Objects.equals(args[i], "r") || Objects.equals(args[i], "f")
@@ -136,7 +181,7 @@ public class World {
         Vector2d position2 = new Vector2d(-2, 1);
         System.out.println(position2);
         System.out.println(position1.add(position2));
-        int o;
-
+        MapDirection tiger = MapDirection.EAST;
+        System.out.println(tiger.toUnitVector());
     }
 }
