@@ -183,5 +183,6 @@ public class World {
         System.out.println(position1.add(position2));
         MapDirection tiger = MapDirection.EAST;
         System.out.println(tiger.toUnitVector());
+        String test = new String("1");
     }
 }
