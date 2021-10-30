@@ -8,20 +8,12 @@ import java.lang.Exception;
 
 public class World {
     static void run(Directions[] t) {
-        for (int i = 0; i < t.length; i++) {
-            switch (t[i]) {
-                case FORWARD:
-                    System.out.println("Zwierzak idzie do przodu");
-                    break;
-                case LEFT:
-                    System.out.println("Zwierzak skręca w lewo");
-                    break;
-                case RIGHT:
-                    System.out.println("Zwierzak skręca w prawo");
-                    break;
-                case BACK:
-                    System.out.println("Zwierzak idzie do tyłu");
-                    break;
+        for (Directions directions : t) {
+            switch (directions) {
+                case FORWARD -> System.out.println("Zwierzak idzie do przodu");
+                case LEFT -> System.out.println("Zwierzak skręca w lewo");
+                case RIGHT -> System.out.println("Zwierzak skręca w prawo");
+                case BACK -> System.out.println("Zwierzak idzie do tyłu");
             }
         }
     }
@@ -70,16 +62,18 @@ public class World {
         }
 
         public Vector2d add(Vector2d other) {
-            Vector2d vector = new Vector2d(this.x, this.y);
-            vector.x += other.x;
-            vector.y += other.y;
+            Vector2d vector = new Vector2d(this.x+ other.x, this.y+ other.y);
+            this.x += other.x;
+            this.y += other.y;
+            //vector.x += other.x;
+            //vector.y += other.y;
             return vector;
         }
 
         public Vector2d subtract(Vector2d other) {
-            Vector2d vector = new Vector2d(this.x, this.y);
-            vector.x -= other.x;
-            vector.y -= other.y;
+            Vector2d vector = new Vector2d(this.x- other.x, this.y- other.y);
+            this.x -= other.x;
+            this.y -= other.y;
             return vector;
         }
 
@@ -148,29 +142,29 @@ public class World {
 
     public static void main(String[] args) throws Exception {
         int m = 0, j = 0;
-        for (int i = 0; i < args.length; i++) {
-            if (Objects.equals(args[i], "l") || Objects.equals(args[i], "r") || Objects.equals(args[i], "f")
-                    || Objects.equals(args[i], "b")) m += 1;
+        for (String s : args) {
+            if (Objects.equals(s, "l") || Objects.equals(s, "r") || Objects.equals(s, "f")
+                    || Objects.equals(s, "b")) m += 1;
         }
         Directions[] _directions = new Directions[m];
-        for (int i = 0; i < args.length; i++) {
-            switch (args[i]) {
-                case "f":
+        for (String arg : args) {
+            switch (arg) {
+                case "f" -> {
                     _directions[j] = Directions.FORWARD;
                     j += 1;
-                    break;
-                case "l":
+                }
+                case "l" -> {
                     _directions[j] = Directions.LEFT;
                     j += 1;
-                    break;
-                case "r":
+                }
+                case "r" -> {
                     _directions[j] = Directions.RIGHT;
                     j += 1;
-                    break;
-                case "b":
+                }
+                case "b" -> {
                     _directions[j] = Directions.BACK;
                     j += 1;
-                    break;
+                }
             }
         }
         System.out.println("start");
@@ -183,5 +177,16 @@ public class World {
         System.out.println(position1.add(position2));
         MapDirection tiger = MapDirection.EAST;
         System.out.println(tiger.toUnitVector());
+        Animal animal = new Animal();
+        //animal.move(MoveDirection.RIGHT);
+        //animal.move(MoveDirection.FORWARD);
+        //animal.move(MoveDirection.FORWARD);
+        //animal.move(MoveDirection.FORWARD);
+        System.out.println(animal);
+        ArrayList<MoveDirection> test = OptionsParser.parse(args);
+        for (MoveDirection direction : test) {
+            animal.move(direction);
+        }
+        System.out.println(animal);
     }
 }
