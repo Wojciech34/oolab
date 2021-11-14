@@ -1,30 +1,41 @@
 package agh.ics.oop;
 
 public class Animal {
-    private World.Vector2d position = new World.Vector2d(2,2);
-    private World.MapDirection direct = World.MapDirection.NORTH;
-    public String toString(){
-        return direct + "," + position;
+    public Vector2d position;
+    private MapDirection direct = MapDirection.NORTH;
+    private IWorldMap map;
+    public Animal(IWorldMap map){
+        this.map = map;
     }
-    public void move(World.MoveDirection direction) throws Exception {
+    public Animal(IWorldMap map, Vector2d initialPosition){
+        this.map = map;
+        this.position = initialPosition;
+    }
+
+
+    public String toString(){
+        switch (direct) {
+            case NORTH -> {return "^";}
+            case EAST -> {return ">";}
+            case SOUTH -> {return "v";}
+            case WEST -> {return "<";}
+        }
+        return "^"; //powinno nigdy nie mieć miejsca
+    }
+    public void move(MoveDirection direction){
         switch (direction){
-            case LEFT -> this.direct = this.direct.previous();
-            case RIGHT -> this.direct = this.direct.next();
+            case LEFT -> direct = direct.previous();
+            case RIGHT -> direct = direct.next();
             case FORWARD -> {
-                this.position.add(this.direct.toUnitVector());
-                if (this.position.x > 4){this.position.x = 4;}
-                if (this.position.x < 0){this.position.x = 0;}
-                if (this.position.y > 4){this.position.y = 4;}
-                if (this.position.y < 0){this.position.y = 0;}
+                if (map.canMoveTo(position.add(direct.toUnitVector()))){
+                    position = position.add(direct.toUnitVector());
+                }
             }
             case BACKWARD -> {
-                this.position.subtract(this.direct.toUnitVector());
-                if (this.position.x > 4){this.position.x = 4;}
-                if (this.position.x < 0){this.position.x = 0;}
-                if (this.position.y > 4){this.position.y = 4;}
-                if (this.position.y < 0){this.position.y = 0;}
+                if (map.canMoveTo(position.subtract(direct.toUnitVector()))){
+                    position = position.subtract(direct.toUnitVector());
+                }
             }
         }
     }
-
 }

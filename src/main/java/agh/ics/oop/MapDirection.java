@@ -1,0 +1,32 @@
+package agh.ics.oop;
+
+public enum MapDirection {
+    NORTH("Północ", 0, 1),
+    EAST("Wschód", 1, 0),
+    SOUTH("Południe", 0, -1),
+    WEST("Zachód", -1, 0);
+
+    private final String string;
+    private final Vector2d unitVector;
+
+    MapDirection(String r, int x, int y){
+        string = r;
+        unitVector = new Vector2d(x, y);
+    }
+
+    public String toString(){
+        return string;
+    }
+
+    public MapDirection next(){
+        return MapDirection.values()[(this.ordinal() + 1)%4];
+    }
+
+    public MapDirection previous(){
+        return MapDirection.values()[(this.ordinal() + 3)%4];
+    }
+
+    public Vector2d toUnitVector(){
+        return unitVector;
+    }
+}
