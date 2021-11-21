@@ -1,15 +1,28 @@
 package agh.ics.oop;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-public class RectangularMap implements IWorldMap{
+public class RectangularMap extends AbstractWorldMap{
     private int w;
     private int h;
-    private List<Animal> animals = new ArrayList<>();
 
     public RectangularMap(int width, int height){
         w = width;
         h = height;
+    }
+    public LinkedList<Animal> getAnimals(){
+        return map_a;
+    }
+
+    @Override
+    public Vector2d giveCorner1() {
+        return new Vector2d(0,0);
+    }
+
+    @Override
+    public Vector2d giveCorner2() {
+        return new Vector2d(w-1, h-1);
     }
 
     @Override
@@ -20,7 +33,7 @@ public class RectangularMap implements IWorldMap{
     @Override
     public boolean place(Animal animal) {
         if (canMoveTo(animal.position)) {
-            animals.add(animal);
+            map_a.add(animal);
             return true;
         }
         else{
@@ -30,21 +43,18 @@ public class RectangularMap implements IWorldMap{
 
     @Override
     public boolean isOccupied(Vector2d position) {
-        for (Animal animal : animals){
-            if (animal.position.equals(position)){return true;}
+        for (Animal a : map_a){
+            if (a.position.equals(position)){return true;}
         }
         return false;
     }
 
     @Override
     public Object objectAt(Vector2d position) {
-        for (Animal animal : animals){
-            if (animal.position.equals(position)){return animal;}
+        for (Animal a : map_a){
+            if (a.position.equals(position)){return a;}
         }
         return null;
     }
 
-    public String toString(){
-        return new MapVisualizer(this).draw(new Vector2d(0,0), new Vector2d(w-1, h-1));
-    }
 }

@@ -1,7 +1,7 @@
 package agh.ics.oop;
 
 public class Animal {
-    public Vector2d position;
+    public Vector2d position = new Vector2d(2,2);
     private MapDirection direct = MapDirection.NORTH;
     private IWorldMap map;
     public Animal(IWorldMap map){
@@ -12,7 +12,7 @@ public class Animal {
         this.position = initialPosition;
     }
 
-
+    public MapDirection getDirect(){return this.direct;}
     public String toString(){
         switch (direct) {
             case NORTH -> {return "^";}
