@@ -2,9 +2,10 @@ package agh.ics.oop;
 
 public enum MapDirection {
     NORTH("Północ", 0, 1),
-    WEST("Zachód", 1, 0),
+    EAST("Wschód", 1, 0),
     SOUTH("Południe", 0, -1),
-    EAST("Wschód", -1, 0);
+    WEST("Zachód", -1, 0);
+
 
 
     private final String string;

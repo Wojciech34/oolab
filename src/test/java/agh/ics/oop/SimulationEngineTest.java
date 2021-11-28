@@ -20,7 +20,7 @@ public class SimulationEngineTest {
         positions.add(new Vector2d(0,0));
         SimulationEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        assertEquals(MapDirection.WEST, engine.getAnimals().get(0).getDirect());
+        assertEquals(MapDirection.EAST, engine.getAnimals().get(0).getDirect());
         assertEquals(new Vector2d(1,1), engine.getAnimals().get(0).position);
     }
     @Test
@@ -50,9 +50,9 @@ public class SimulationEngineTest {
         positions.add(new Vector2d(2,2));
         SimulationEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        assertEquals(MapDirection.WEST, engine.getAnimals().get(0).getDirect());
+        assertEquals(MapDirection.EAST, engine.getAnimals().get(0).getDirect());
         assertEquals(new Vector2d(1,0), engine.getAnimals().get(0).position);
-        assertEquals(MapDirection.WEST, engine.getAnimals().get(1).getDirect());
+        assertEquals(MapDirection.EAST, engine.getAnimals().get(1).getDirect());
         assertEquals(new Vector2d(3,2), engine.getAnimals().get(1).position);
     }
     @Test
@@ -70,9 +70,9 @@ public class SimulationEngineTest {
         positions.add(new Vector2d(6,5));
         SimulationEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        assertEquals(MapDirection.WEST, engine.getAnimals().get(0).getDirect());
+        assertEquals(MapDirection.EAST, engine.getAnimals().get(0).getDirect());
         assertEquals(new Vector2d(5,5), engine.getAnimals().get(0).position);
-        assertEquals(MapDirection.EAST, engine.getAnimals().get(1).getDirect());
+        assertEquals(MapDirection.WEST, engine.getAnimals().get(1).getDirect());
         assertEquals(new Vector2d(6,5), engine.getAnimals().get(1).position);
     }
     // testy do GrassField
@@ -87,7 +87,7 @@ public class SimulationEngineTest {
         positions.add(new Vector2d(0,0));
         SimulationEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        assertEquals(MapDirection.WEST, engine.getAnimals().get(0).getDirect());
+        assertEquals(MapDirection.EAST, engine.getAnimals().get(0).getDirect());
         assertEquals(new Vector2d(1,1), engine.getAnimals().get(0).position);
     }
     @Test
@@ -117,9 +117,9 @@ public class SimulationEngineTest {
         positions.add(new Vector2d(2,2));
         SimulationEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        assertEquals(MapDirection.WEST, engine.getAnimals().get(0).getDirect());
+        assertEquals(MapDirection.EAST, engine.getAnimals().get(0).getDirect());
         assertEquals(new Vector2d(1,0), engine.getAnimals().get(0).position);
-        assertEquals(MapDirection.WEST, engine.getAnimals().get(1).getDirect());
+        assertEquals(MapDirection.EAST, engine.getAnimals().get(1).getDirect());
         assertEquals(new Vector2d(3,2), engine.getAnimals().get(1).position);
     }
     @Test
@@ -137,9 +137,9 @@ public class SimulationEngineTest {
         positions.add(new Vector2d(6,5));
         SimulationEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        assertEquals(MapDirection.WEST, engine.getAnimals().get(0).getDirect());
+        assertEquals(MapDirection.EAST, engine.getAnimals().get(0).getDirect());
         assertEquals(new Vector2d(5,5), engine.getAnimals().get(0).position);
-        assertEquals(MapDirection.EAST, engine.getAnimals().get(1).getDirect());
+        assertEquals(MapDirection.WEST, engine.getAnimals().get(1).getDirect());
         assertEquals(new Vector2d(6,5), engine.getAnimals().get(1).position);
     }
 }

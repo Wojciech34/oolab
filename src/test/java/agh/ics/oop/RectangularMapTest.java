@@ -9,7 +9,7 @@ public class RectangularMapTest {
         RectangularMap test1 = new RectangularMap(3,3);
         Animal animal = new Animal(test1, new Vector2d(1,1));
         test1.place(animal);
-        assertEquals(animal, test1.getAnimals().get(0));
+        assertEquals(animal, test1.getAnimals().get(new Vector2d(1,1)));
     }
     @Test
     public void placeTest_samePositionCase(){

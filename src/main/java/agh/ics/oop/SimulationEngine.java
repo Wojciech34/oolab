@@ -27,9 +27,12 @@ public class SimulationEngine implements IEngine{
        // System.out.println(main_map.toString()); // printowac to?
         for (MoveDirection step : main_steps){
             animals.get(i).move(step);
-         //   System.out.println(main_map.toString()); // printowac to?
+//            System.out.println(i);
+//            System.out.println(step);
+//            System.out.println(main_map.toString()); // printowac to?
             i += 1;
             i %= n;
+
         }
     }
 }

@@ -10,7 +10,7 @@ public class GrassFieldTest {
         GrassField test1 = new GrassField(4);
         Animal animal = new Animal(test1, new Vector2d(1,1));
         test1.place(animal);
-        assertEquals(animal, test1.getAnimals().get(0));
+        assertEquals(animal, test1.getAnimals().get(new Vector2d(1,1)));
     }
     @Test
     public void placeTest_samePositionCase(){

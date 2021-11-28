@@ -30,13 +30,13 @@ public class World {
         //System.out.println(map.toString());
 */
         IWorldMap map = new GrassField(10);
-        //System.out.println(map.toString());
+        System.out.println(map.toString());
         List<Vector2d> positions = new LinkedList<>();
         positions.add(new Vector2d(2,2));
         positions.add(new Vector2d(3,4));
         LinkedList<MoveDirection> directions = new OptionsParser().parse(args);
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-        //System.out.println(map.toString());
+        System.out.println(map.toString());
     }
 }
