@@ -7,19 +7,28 @@ public class GrassFieldTest {
 
     @Test
     public void placeTest(){
-        GrassField test1 = new GrassField(4);
-        Animal animal = new Animal(test1, new Vector2d(1,1));
-        test1.place(animal);
-        assertEquals(animal, test1.getAnimals().get(new Vector2d(1,1)));
+        try {
+            GrassField test1 = new GrassField(4);
+            Animal animal = new Animal(test1, new Vector2d(1, 1));
+            test1.place(animal);
+            assertEquals(animal, test1.getAnimals().get(new Vector2d(1, 1)));
+        }
+        catch (IllegalArgumentException e){
+            fail(e.toString());
+        }
     }
     @Test
     public void placeTest_samePositionCase(){
-        GrassField test2 = new GrassField(4);
-        Animal animal = new Animal(test2, new Vector2d(1,1));
-        Animal animal2 = new Animal(test2, new Vector2d(1,1));
-        test2.place(animal);
-        test2.place(animal2);
-        assertEquals(1, test2.getAnimals().size());
+        try {
+            GrassField test2 = new GrassField(4);
+            Animal animal = new Animal(test2, new Vector2d(1, 1));
+            Animal animal2 = new Animal(test2, new Vector2d(1, 1));
+            test2.place(animal);
+            test2.place(animal2);
+            assertEquals(1, test2.getAnimals().size());
+        }
+        catch (IllegalArgumentException e){
+            assertEquals("java.lang.IllegalArgumentException: (1,1) is not available", e.toString());}
     }
     @Test
     public void canMoveToTest(){

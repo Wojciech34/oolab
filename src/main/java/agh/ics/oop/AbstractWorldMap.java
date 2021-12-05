@@ -26,7 +26,7 @@ abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
         max_right = newPosition.upperRight(max_right);
     }
     @Override
-    public boolean place(Animal animal) {
+    public boolean place(Animal animal) throws IllegalArgumentException{
         if (canMoveTo(animal.position)){
             map_a.put(animal.position, animal);
             min_left = animal.position.lowerLeft(min_left);
@@ -34,6 +34,6 @@ abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
             animal.addObserver(this);
             return true;
         }
-        return false;
+        throw new IllegalArgumentException(animal.position.toString() + " is not available");
     }
 }

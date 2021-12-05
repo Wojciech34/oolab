@@ -18,7 +18,8 @@ public class World {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalArgumentException {
+        try {
 /*
         LinkedList<MoveDirection> directions = new OptionsParser().parse(args);
         IWorldMap map = new RectangularMap(10, 5);
@@ -29,14 +30,19 @@ public class World {
         engine.run();
         //System.out.println(map.toString());
 */
-        IWorldMap map = new GrassField(10);
-        System.out.println(map.toString());
-        List<Vector2d> positions = new LinkedList<>();
-        positions.add(new Vector2d(2,2));
-        positions.add(new Vector2d(3,4));
-        LinkedList<MoveDirection> directions = new OptionsParser().parse(args);
-        IEngine engine = new SimulationEngine(directions, map, positions);
-        engine.run();
-        System.out.println(map.toString());
+            IWorldMap map = new GrassField(10);
+            System.out.println(map.toString());
+            List<Vector2d> positions = new LinkedList<>();
+            positions.add(new Vector2d(2, 2));
+            positions.add(new Vector2d(3, 4));
+            positions.add(new Vector2d(3,4));
+            LinkedList<MoveDirection> directions = new OptionsParser().parse(args);
+            IEngine engine = new SimulationEngine(directions, map, positions);
+            engine.run();
+            System.out.println(map.toString());
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e);
+        }
     }
 }

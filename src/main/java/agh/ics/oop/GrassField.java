@@ -7,6 +7,7 @@ public class GrassField extends AbstractWorldMap{
     private Random generator = new Random();
     //private LinkedList<Grass> map_g = new LinkedList<>();
     private Map<Vector2d, Grass> map_g = new HashMap<>();
+    public MapBoundary mp = new MapBoundary();
 
     public GrassField(int x){
         this.number = x;
@@ -20,8 +21,10 @@ public class GrassField extends AbstractWorldMap{
                     flag = false;
                 }
                 if (flag){
-                    min_left = temp.getPosition().lowerLeft(min_left);
-                    max_right = temp.getPosition().upperRight(max_right);
+                    mp.addElement(temp.getPosition());
+                 //   System.out.println(temp.getPosition());
+                   // min_left = temp.getPosition().lowerLeft(min_left);
+                   // max_right = temp.getPosition().upperRight(max_right);
                     break;}
                 }
             }
@@ -30,14 +33,17 @@ public class GrassField extends AbstractWorldMap{
         return map_a;
     }
 
+
     @Override
     public Vector2d giveCorner1() {
-        return min_left;
+       System.out.println(mp.getLowLeft());
+       return mp.getLowLeft();
     }
 
     @Override
     public Vector2d giveCorner2() {
-        return max_right;
+        System.out.println(mp.getUpRight());
+        return mp.getUpRight();
     }
 
     @Override
@@ -49,6 +55,13 @@ public class GrassField extends AbstractWorldMap{
     public boolean isOccupied(Vector2d position) {
         if (map_a.get(position) != null) {return true;}
         return map_g.get(position) != null;
+    }
+
+    @Override
+    public boolean place(Animal animal) throws IllegalArgumentException {
+        mp.addElement(animal.position);
+        animal.addObserver(mp);
+        return super.place(animal);
     }
 
     @Override
