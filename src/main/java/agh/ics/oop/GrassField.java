@@ -6,7 +6,7 @@ public class GrassField extends AbstractWorldMap{
     private int number;
     private Random generator = new Random();
     //private LinkedList<Grass> map_g = new LinkedList<>();
-    private Map<Vector2d, Grass> map_g = new HashMap<>();
+    public Map<Vector2d, Grass> map_g = new HashMap<>();
     public MapBoundary mp = new MapBoundary();
 
     public GrassField(int x){

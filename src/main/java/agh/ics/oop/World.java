@@ -1,6 +1,9 @@
 package agh.ics.oop;
 
 
+import agh.ics.oop.gui.App;
+import javafx.application.Application;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +33,8 @@ public class World {
         engine.run();
         //System.out.println(map.toString());
 */
-            IWorldMap map = new GrassField(10);
+            Application.launch(App.class, args);
+/*            IWorldMap map = new GrassField(10);
             System.out.println(map.toString());
             List<Vector2d> positions = new LinkedList<>();
             positions.add(new Vector2d(2, 2));
@@ -39,7 +43,7 @@ public class World {
             LinkedList<MoveDirection> directions = new OptionsParser().parse(args);
             IEngine engine = new SimulationEngine(directions, map, positions);
             engine.run();
-            System.out.println(map.toString());
+            System.out.println(map.toString());*/
         }
         catch (IllegalArgumentException e){
             System.out.println(e);

@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import agh.ics.oop.gui.App;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -7,14 +9,22 @@ import java.util.Map;
 
 abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
     //protected LinkedList<Animal> map_a = new LinkedList<>();
-    protected Map<Vector2d, Animal> map_a = new HashMap<>();
+    public Map<Vector2d, Animal> map_a = new HashMap<>();
   //  protected Vector2d min_left = new Vector2d(0,0);
  //   protected Vector2d max_right = new Vector2d(0,0);
     public String toString(){
         Vector2d vector1 = giveCorner1();
         Vector2d vector2 = giveCorner2();
         return new MapVisualizer(this).draw(vector1, vector2);
+
     }
+
+//    public void draw(){
+//        Vector2d vector1 = giveCorner1();
+//        Vector2d vector2 = giveCorner2();
+//        App app = new
+//
+//    }
     public abstract Vector2d giveCorner1(); // lewy dolny róg mapy
     public abstract Vector2d giveCorner2(); // prawy górny róg mapy
 
