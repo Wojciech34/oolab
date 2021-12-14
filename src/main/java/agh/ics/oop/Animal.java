@@ -27,8 +27,15 @@ public class Animal {
     }
     public void move(MoveDirection direction){
         switch (direction){
-            case LEFT -> direct = direct.previous();
-            case RIGHT -> direct = direct.next();
+            case LEFT -> {
+                direct = direct.previous();
+                this.positionChanged(position,position);
+            }
+
+            case RIGHT ->{
+                direct = direct.next();
+                this.positionChanged(position,position);
+            }
             case FORWARD -> {
                 if (map.canMoveTo(position.add(direct.toUnitVector()))){
                     this.positionChanged(position, position.add(direct.toUnitVector()));

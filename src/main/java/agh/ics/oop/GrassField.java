@@ -36,13 +36,13 @@ public class GrassField extends AbstractWorldMap{
 
     @Override
     public Vector2d giveCorner1() {
-       System.out.println(mp.getLowLeft());
+ //      System.out.println(mp.getLowLeft());
        return mp.getLowLeft();
     }
 
     @Override
     public Vector2d giveCorner2() {
-        System.out.println(mp.getUpRight());
+  //      System.out.println(mp.getUpRight());
         return mp.getUpRight();
     }
 

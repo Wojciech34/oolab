@@ -30,8 +30,10 @@ abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
 
     @Override
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
-        map_a.put(newPosition, map_a.get(oldPosition));
-        map_a.remove(oldPosition);
+        if (!oldPosition.equals(newPosition)) {
+            map_a.put(newPosition, map_a.get(oldPosition));
+            map_a.remove(oldPosition);
+        }
  //       min_left = newPosition.lowerLeft(min_left);
   //      max_right = newPosition.upperRight(max_right);
     }
